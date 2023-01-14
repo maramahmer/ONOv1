@@ -24,9 +24,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
               padding: EdgeInsets.only(right: 20.0),
               child: GestureDetector(
                 onTap: () {
-/*                   Navigator.pop(context, MaterialPageRoute(builder: (context) {
-                    return HomeScreen();
-                  })); */
+                  // pop everything and return to home
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) => HomeScreen()),
                       (Route<dynamic> route) => false);
