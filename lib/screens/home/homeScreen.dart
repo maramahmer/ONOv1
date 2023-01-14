@@ -3,7 +3,7 @@ import 'package:ono/constants.dart';
 import '../../model/emotionButton.dart';
 import '../secondarySelectionScreen.dart';
 
-class HomeScreen extends StatefulWidget{
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
   @override
@@ -22,9 +22,13 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: ListView(
         children: [
-          const SizedBox(height: 0,),
+          const SizedBox(
+            height: 0,
+          ),
           header(), // how are you feeling
-          const SizedBox(height: 0,),
+          const SizedBox(
+            height: 0,
+          ),
           gridEmotions(), // emotion buttons
         ],
       ),
@@ -40,13 +44,10 @@ class _HomeScreenState extends State<HomeScreen> {
           Text(
             "how are you feeling?",
             textAlign: TextAlign.center,
-            style: Theme
-                .of(context)
+            style: Theme.of(context)
                 .textTheme
                 .headlineMedium!
-                .copyWith(
-                fontWeight: FontWeight.w400,
-                color: mainPink),
+                .copyWith(fontWeight: FontWeight.w400, color: mainPink),
           ),
         ],
       ),
@@ -58,34 +59,37 @@ class _HomeScreenState extends State<HomeScreen> {
       itemCount: 8,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(12),
+      padding: const EdgeInsets.all(15),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 4,
-        crossAxisSpacing: 5,
+        crossAxisSpacing: 0,
         mainAxisExtent: 165,
       ),
       itemBuilder: (context, index) {
         EmotionButton emotionButton = emoButton[index];
         return GestureDetector(
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context){
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
               return SecondarySelectionScreen(emotionButton: emotionButton);
             }));
           },
           child: Container(
             height: 100,
             decoration: BoxDecoration(
-            //color: Colors.grey[200],
-            color: bgColor, // CHANGE TO THIS ONCE REMAINDER OF BUTTON DONE TO MAKE TRANSPARENT
-            borderRadius: BorderRadius.circular(16),
-        ),
+              //color: Colors.grey[200],
+              color:
+                  bgColor, // CHANGE TO THIS ONCE REMAINDER OF BUTTON DONE TO MAKE TRANSPARENT
+              borderRadius: BorderRadius.circular(16),
+            ),
             child: Stack(
               children: [
                 Column(
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const SizedBox(height: 14,),
+                    const SizedBox(
+                      height: 14,
+                    ),
                     Center(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(200),
@@ -98,8 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                     ),
                     const SizedBox(height: 0),
-                    Padding(padding:
-                    const EdgeInsets.symmetric(horizontal: 10),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
                       child: Text(
                         emotionButton.name,
                         style: const TextStyle(
@@ -115,7 +119,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 )
               ],
             ),
-        ),
+          ),
         );
       },
     );
