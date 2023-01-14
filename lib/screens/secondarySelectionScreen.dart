@@ -76,7 +76,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
                 .copyWith(fontWeight: FontWeight.w400, color: mainPink),
           ),
           Padding(
-              padding: const EdgeInsets.all(18),
+              padding: const EdgeInsets.all(10),
               child: Text(
                 widget.emotionButton.name,
                 style: Theme.of(context)
@@ -133,23 +133,36 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         children: [
-          Text(
-            "show all",
-            textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(fontWeight: FontWeight.w400, color: mainPink),
+          ElevatedButton(
+            onPressed: () {},
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(CircleBorder()),
+              padding: MaterialStateProperty.all(EdgeInsets.all(45)),
+              backgroundColor:
+                  MaterialStateProperty.all(mainBlue), // <-- Button color
+              overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                if (states.contains(MaterialState.pressed))
+                  return mainPink; // <-- Splash color
+              }),
+            ),
+            child: Text(
+              "show all",
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(fontWeight: FontWeight.w400, color: Colors.white),
+            ),
           ),
-          Padding(
-              padding: const EdgeInsets.all(18),
+/*           Padding(
+              padding: const EdgeInsets.all(5),
               child: Text(
                 widget.emotionButton.name,
                 style: Theme.of(context)
                     .textTheme
                     .titleLarge!
-                    .copyWith(fontWeight: FontWeight.w400, color: mainBlue),
-              )),
+                    .copyWith(fontWeight: FontWeight.w400, color: mainPink),
+              )), */
         ],
       ),
     );
