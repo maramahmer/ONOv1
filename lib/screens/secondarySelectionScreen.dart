@@ -15,6 +15,7 @@ class SecondarySelectionScreen extends StatefulWidget {
 
 class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
   int quantity = 1;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -191,8 +192,8 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
           child: Container(
             height: 40,
             decoration: BoxDecoration(
-              color:
-                  mainBlue, // CHANGE TO THIS ONCE REMAINDER OF BUTTON DONE TO MAKE TRANSPARENT
+              color: mainBlue,
+              // CHANGE TO THIS ONCE REMAINDER OF BUTTON DONE TO MAKE TRANSPARENT
               borderRadius: BorderRadius.circular(85),
             ),
             child: Stack(

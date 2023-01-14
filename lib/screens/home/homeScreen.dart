@@ -13,7 +13,6 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       appBar: AppBar(
         backgroundColor: bgColor,
@@ -79,8 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 100,
             decoration: BoxDecoration(
               //color: Colors.grey[200],
-              color:
-                  bgColor, // CHANGE TO THIS ONCE REMAINDER OF BUTTON DONE TO MAKE TRANSPARENT
+              color: bgColor,
+              // CHANGE TO THIS ONCE REMAINDER OF BUTTON DONE TO MAKE TRANSPARENT
               borderRadius: BorderRadius.circular(16),
             ),
             child: Stack(
