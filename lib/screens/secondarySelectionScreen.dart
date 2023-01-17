@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ono/constants.dart';
 import 'package:ono/screens/home/homeScreen.dart';
 import '../../model/emotionButton.dart';
+import 'onoList.dart';
 
 class SecondarySelectionScreen extends StatefulWidget {
   const SecondarySelectionScreen({Key? key, required this.emotionButton})
@@ -135,7 +136,14 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
       child: Column(
         children: [
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return onoList(
+                  emotionButton: widget.emotionButton,
+                  mainEmotion: widget.emotionButton.name,
+                );
+              }));
+            },
             style: ButtonStyle(
               shape: MaterialStateProperty.all(CircleBorder()),
               padding: MaterialStateProperty.all(EdgeInsets.all(45)),
@@ -182,18 +190,21 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
         mainAxisExtent: 60,
       ),
       itemBuilder: (context, index) {
-        //EmotionButton emotionButton = emoButton[widget.emotionButton.name];
+        EmotionButton emotionButton = emoButton[index];
         return GestureDetector(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
-              throw UnimplementedError("TODO SHOW ONO");
+              return onoList(
+                emotionButton: widget.emotionButton,
+                indexOno: index,
+                mainEmotion: widget.emotionButton.name,
+              );
             }));
           },
           child: Container(
             height: 40,
             decoration: BoxDecoration(
               color: mainBlue,
-              // CHANGE TO THIS ONCE REMAINDER OF BUTTON DONE TO MAKE TRANSPARENT
               borderRadius: BorderRadius.circular(85),
             ),
             child: Stack(

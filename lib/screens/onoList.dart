@@ -1,0 +1,66 @@
+import 'package:flutter/material.dart';
+import 'package:ono/constants.dart';
+import 'package:ono/screens/home/homeScreen.dart';
+import '../../model/emotionButton.dart';
+
+class onoList extends StatefulWidget {
+  const onoList(
+      {Key? key,
+      this.indexOno = 0,
+      required this.mainEmotion,
+      required this.emotionButton})
+      : super(key: key);
+  // ADJUST THIS
+  final EmotionButton emotionButton;
+  final int indexOno;
+  final String mainEmotion;
+
+  @override
+  State<onoList> createState() => _onoList();
+}
+
+class _onoList extends State<onoList> {
+  int quantity = 1;
+
+  get indexNum => widget.indexOno;
+  get button => widget.mainEmotion;
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        actions: <Widget>[
+          Padding(
+              padding: EdgeInsets.only(right: 20.0),
+              child: GestureDetector(
+                onTap: () {
+                  // pop everything and return to home
+                  Navigator.of(context).pushAndRemoveUntil(
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
+                      (Route<dynamic> route) => false);
+                },
+                child: const Icon(
+                  Icons.home,
+                  size: 30,
+                ),
+              )),
+        ],
+        backgroundColor: bgColor,
+        elevation: 0,
+        iconTheme: const IconThemeData(
+          color: mainPink,
+        ),
+      ),
+      body: ListView(
+        children: [
+          SizedBox(),
+          //Text(button),
+          Text(widget.emotionButton.name),
+          Text(widget.emotionButton.secondEmotionList[indexNum])
+          // put the onomatopoeia list here
+          //createList()
+        ],
+      ),
+    );
+  }
+
+  //Widget createList(){}
+}
