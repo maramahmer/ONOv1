@@ -48,9 +48,19 @@ class _onoListM extends State<onoListM> {
       ),
       body: ListView(
         children: [
-          SizedBox(),
+          SizedBox(
+            height: 15,
+          ),
           //Text(button),
-          Text(widget.emotionButton.name),
+          Text(
+            "   ${widget.emotionButton.name}",
+            textAlign: TextAlign.left,
+            style: Theme.of(context)
+                .textTheme
+                .headlineSmall!
+                .copyWith(fontWeight: FontWeight.w500, color: desaturatedBlue),
+          ),
+
           // put the onomatopoeia list here
           //createList()
         ],
