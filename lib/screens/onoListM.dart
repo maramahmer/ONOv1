@@ -5,26 +5,21 @@ import '../../model/emotionButton.dart';
 import 'dart:typed_data';
 import 'dart:convert';
 
-class onoList extends StatefulWidget {
-  const onoList(
-      {Key? key,
-      required this.indexOno,
-      required this.mainEmotion,
-      required this.emotionButton})
+class onoListM extends StatefulWidget {
+  const onoListM(
+      {Key? key, required this.mainEmotion, required this.emotionButton})
       : super(key: key);
   // ADJUST THIS
   final EmotionButton emotionButton;
-  final int indexOno;
   final String mainEmotion;
 
   @override
-  State<onoList> createState() => _onoList();
+  State<onoListM> createState() => _onoListM();
 }
 
-class _onoList extends State<onoList> {
+class _onoListM extends State<onoListM> {
   int quantity = 1;
 
-  get indexNum => widget.indexOno;
   get button => widget.mainEmotion;
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,16 +51,12 @@ class _onoList extends State<onoList> {
           SizedBox(),
           //Text(button),
           Text(widget.emotionButton.name),
-          Text(widget.emotionButton.secondEmotionList[indexNum])
           // put the onomatopoeia list here
           //createList()
         ],
       ),
     );
   }
-  
-  Widget createList(){
-    
-  }
 
+  //Widget createList(){}
 }

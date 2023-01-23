@@ -3,6 +3,7 @@ import 'package:ono/constants.dart';
 import 'package:ono/screens/home/homeScreen.dart';
 import '../../model/emotionButton.dart';
 import 'onoList.dart';
+import 'onoListM.dart';
 
 class SecondarySelectionScreen extends StatefulWidget {
   const SecondarySelectionScreen({Key? key, required this.emotionButton})
@@ -138,7 +139,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
           ElevatedButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return onoList(
+                return onoListM(
                   emotionButton: widget.emotionButton,
                   mainEmotion: widget.emotionButton.name,
                 );
