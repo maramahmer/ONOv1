@@ -58,7 +58,7 @@ class _onoList extends State<onoList> {
           ),
           //Text(button),
           Text(
-            "   ${widget.emotionButton.name} > ${widget.emotionButton.secondEmotionList[indexNum]}",
+            "     ${widget.emotionButton.name} > ${widget.emotionButton.secondEmotionList[indexNum]}",
             textAlign: TextAlign.left,
             style: Theme.of(context)
                 .textTheme

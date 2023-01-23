@@ -53,7 +53,7 @@ class _onoListM extends State<onoListM> {
           ),
           //Text(button),
           Text(
-            "   ${widget.emotionButton.name}",
+            "     ${widget.emotionButton.name}",
             textAlign: TextAlign.left,
             style: Theme.of(context)
                 .textTheme
@@ -62,11 +62,26 @@ class _onoListM extends State<onoListM> {
           ),
 
           // put the onomatopoeia list here
-          //createList()
+          createList()
         ],
       ),
     );
   }
 
-  //Widget createList(){}
+  Widget createList() {
+    return ListView(
+      shrinkWrap: true,
+      children: [
+        //Text(button),
+        Text(
+          widget.emotionButton.name,
+          textAlign: TextAlign.left,
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium!
+              .copyWith(fontWeight: FontWeight.w500, color: textBlack),
+        ),
+      ],
+    );
+  }
 }
