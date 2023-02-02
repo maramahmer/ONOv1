@@ -5,6 +5,7 @@ import '../../model/emotionButton.dart';
 import 'dart:typed_data';
 import 'dart:convert';
 
+// This is for 2 emotions chosen
 class onoList extends StatefulWidget {
   const onoList(
       {Key? key,
@@ -76,5 +77,35 @@ class _onoList extends State<onoList> {
   Widget createList(){
     
   } */
+
+  Widget _createList() {
+    return SliverList(
+      delegate: SliverChildListDelegate(
+        [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Text("     ${widget.emotionButton.name} > ${widget.emotionButton.secondEmotionList[indexNum]}"),
+              IconButton(
+                  icon: Icon(
+                    Icons.sort,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: () {})
+              // .p(12).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(20))),
+            ],
+          ),
+          getList()
+        ],
+      ),
+    );
+  }
+
+  Widget getList() {
+    return Column(
+        children: doctorDataList.map((x) {
+          return _doctorTile(x);
+        }).toList());
+  }
 
 }

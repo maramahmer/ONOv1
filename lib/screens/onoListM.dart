@@ -5,6 +5,7 @@ import '../../model/emotionButton.dart';
 import 'dart:typed_data';
 import 'dart:convert';
 
+// When choosing show all
 class onoListM extends StatefulWidget {
   const onoListM(
       {Key? key, required this.mainEmotion, required this.emotionButton})
