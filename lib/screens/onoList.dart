@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:ono/constants.dart';
+import 'package:ono/model/listModel.dart';
 import 'package:ono/screens/home/homeScreen.dart';
 import '../../model/emotionButton.dart';
-import 'dart:typed_data';
-import 'dart:convert';
+import 'package:ono/model/dummyData.dart';
+
 
 // This is for 2 emotions chosen
 class onoList extends StatefulWidget {
@@ -23,6 +24,13 @@ class onoList extends StatefulWidget {
 }
 
 class _onoList extends State<onoList> {
+  late List<listModel> onoDataList;
+  @override
+  void initState(){
+    onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
+    super.initState();
+  }
+
   int quantity = 1;
 
   get indexNum => widget.indexOno;
@@ -52,23 +60,15 @@ class _onoList extends State<onoList> {
           color: mainPink,
         ),
       ),
-      body: ListView(
-        children: [
-          SizedBox(
-            height: 15,
-          ),
-          //Text(button),
-          Text(
-            "     ${widget.emotionButton.name} > ${widget.emotionButton.secondEmotionList[indexNum]}",
-            textAlign: TextAlign.left,
-            style: Theme.of(context)
-                .textTheme
-                .headlineSmall!
-                .copyWith(fontWeight: FontWeight.w500, color: desaturatedBlue),
-          ),
+      body: CustomScrollView(
+        slivers: <Widget>[
+          SliverList(delegate: SliverChildListDelegate(
+            [
 
-          // put the onomatopoeia list here
-          //createList()
+            ],
+          ),
+          ),
+          createList()
         ],
       ),
     );
@@ -78,22 +78,26 @@ class _onoList extends State<onoList> {
     
   } */
 
-  Widget _createList() {
+  Widget createList() {
     return SliverList(
       delegate: SliverChildListDelegate(
         [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-              Text("     ${widget.emotionButton.name} > ${widget.emotionButton.secondEmotionList[indexNum]}"),
-              IconButton(
+            /*children: <Widget>[
+              Text("     ${widget.emotionButton.name} > ${widget.emotionButton.secondEmotionList[indexNum]}",
+      style: Theme.of(context)
+          .textTheme
+          .titleLarge!
+          .copyWith(fontWeight: FontWeight.w400, color: desaturatedBlue),
+              ),
+*//*              IconButton(
                   icon: Icon(
                     Icons.sort,
                     color: Theme.of(context).primaryColor,
                   ),
-                  onPressed: () {})
-              // .p(12).ripple(() {}, borderRadius: BorderRadius.all(Radius.circular(20))),
-            ],
+                  onPressed: () {})*//*
+            ],*/
           ),
           getList()
         ],
@@ -103,9 +107,64 @@ class _onoList extends State<onoList> {
 
   Widget getList() {
     return Column(
-        children: doctorDataList.map((x) {
-          return _doctorTile(x);
+        children: onoDataList.map((x) {
+          return onoTile(x);
         }).toList());
+  }
+
+  Widget onoTile(listModel model){
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      decoration: const BoxDecoration(
+        color: lightBgColor,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            offset: Offset(4, 4),
+            blurRadius: 10,
+            color: darkBgColor,
+          ),
+          BoxShadow(
+            offset: Offset(-3, 0),
+            blurRadius: 14,
+            color: darkBgColor,
+          )
+        ],
+      ),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+        child: ListTile(
+          contentPadding: EdgeInsets.all(0),
+          leading: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(13)),
+            child: Container(
+              height: 35,
+              width: 55,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: lightBgColor,
+              ),
+              child: Text(
+                model.letter,
+                textAlign: TextAlign.left,
+                textScaleFactor: 2,
+              ),
+            ),
+          ),
+          title: Text(model.onomatopoeia),
+          subtitle: Text(
+            model.transliteration,
+          ),
+          trailing: const Icon(
+            Icons.keyboard_arrow_right,
+            size: 30,
+            color: mainPink,
+          ),
+        ),
+      )/*.ripple(() {
+        //Navigator.pushNamed(context, "/DetailPage", arguments: model);
+      }, borderRadius: BorderRadius.all(Radius.circular(20))),*/
+    );
   }
 
 }

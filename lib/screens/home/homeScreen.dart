@@ -15,8 +15,54 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        leading: IconButton(
+            icon: const Icon(
+              Icons.help_outline,
+              color: mainPink,
+            ),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (context) => AlertDialog(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  contentPadding: const EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0, bottom: 20),
+                  title: const Text('How to use ONO\n 。。。。。',
+                    style: TextStyle(fontSize: 21, color: mainBlue, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+
+                  content: const Text('Specify your desired emotion by choosing one of the available general emotions, then narrow it down to a more specific emotion. \nTo view all onomatopoeia in a broad emotional category, choose the broad category and press "show all".',
+                    style: TextStyle(fontSize: 19, wordSpacing: 1),
+                    textAlign: TextAlign.center,
+                  ),
+                  actions: [
+                    Center(
+                      child: Column(
+                        children:[
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ButtonStyle(
+                                  shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
+                                  padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                                  backgroundColor:
+                                  MaterialStateProperty.all(mainPink),
+                                  alignment: Alignment.center
+                              ),
+                              child: const Text('ok', style: TextStyle(fontSize: 17))),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+              );
+            }),
+        toolbarHeight: 35,
         backgroundColor: bgColor,
         elevation: 0,
+
         // not putting anything to navigate with in the top bar of main screen yet
         // for future development, a search button can be implemented to search all
       ),
@@ -26,9 +72,6 @@ class _HomeScreenState extends State<HomeScreen> {
             height: 0,
           ),
           header(), // how are you feeling
-          const SizedBox(
-            height: 0,
-          ),
           gridEmotions(), // emotion buttons
         ],
       ),
@@ -40,14 +83,11 @@ class _HomeScreenState extends State<HomeScreen> {
     return Padding(
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
-        children: [
+        children: const [
           Text(
-            "how are you feeling?",
+            "How are you feeling?",
             textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(fontWeight: FontWeight.w400, color: mainPink),
+            style: TextStyle(color: mainPink, fontSize: 30),
           ),
         ],
       ),
@@ -59,10 +99,10 @@ class _HomeScreenState extends State<HomeScreen> {
       itemCount: 8,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(15),
+      padding: const EdgeInsets.all(3),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        mainAxisSpacing: 4,
+        mainAxisSpacing: 2,
         crossAxisSpacing: 0,
         mainAxisExtent: 165,
       ),
@@ -88,15 +128,15 @@ class _HomeScreenState extends State<HomeScreen> {
                   //crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const SizedBox(
-                      height: 14,
+                      height: 9,
                     ),
                     Center(
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(200),
                         child: Image.asset(
                           emotionButton.image,
-                          width: 130,
-                          height: 130,
+                          width: 120,
+                          height: 120,
                           fit: BoxFit.fill,
                         ),
                       ),

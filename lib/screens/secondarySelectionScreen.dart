@@ -22,6 +22,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 55,
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -70,23 +71,65 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
       padding: const EdgeInsets.all(defaultPadding),
       child: Column(
         children: [
-          Text(
-            "can you narrow that down?",
+          const Text(
+            "Can you narrow that down?",
             textAlign: TextAlign.center,
-            style: Theme.of(context)
-                .textTheme
-                .headlineMedium!
-                .copyWith(fontWeight: FontWeight.w400, color: mainPink),
+            style: TextStyle(color: mainPink, fontSize: 30),
           ),
-          Padding(
-              padding: const EdgeInsets.all(10),
-              child: Text(
-                widget.emotionButton.name,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(fontWeight: FontWeight.w400, color: mainBlue),
-              )),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            //padding: const EdgeInsets.all(10),
+              children: <Widget>[
+                Text(
+                "       ${widget.emotionButton.name}",
+                style: const TextStyle(color: mainBlue, fontSize: 20),
+              ),
+              IconButton(
+                  icon: const Icon(
+                    Icons.help_outline,
+                    color: mainPink,
+                  ),
+                  onPressed: () {
+                    showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        shape: const RoundedRectangleBorder(
+                            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                          contentPadding: const EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0, bottom: 20),
+                        title: const Text('ONO Emotion Specification Instructions\n 。。。。。',
+                            style: TextStyle(fontSize: 21, color: mainBlue, fontWeight: FontWeight.bold),
+                          textAlign: TextAlign.center,
+                        ),
+
+                        content: const Text('Specify your desired emotion by choosing one of the available specific emotions. \nTo view all onomatopoeia in the broad emotional category \npress "show all".',
+                          style: TextStyle(fontSize: 19, wordSpacing: 1),
+                          textAlign: TextAlign.center,
+                        ),
+                        actions: [
+                          Center(
+                          child: Column(
+                            children:[
+                              ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context);
+                                    },
+                                  style: ButtonStyle(
+                                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
+                                      padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                                      backgroundColor:
+                                      MaterialStateProperty.all(mainPink),
+                                      alignment: Alignment.center
+                                  ),
+                                  child: const Text('ok', style: TextStyle(fontSize: 17))),
+                            ],
+                          ),
+                          ),
+                        ],
+                      ),
+                    );
+                  })
+          ],
+          ),
         ],
       ),
     );
@@ -147,7 +190,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
             },
             style: ButtonStyle(
               shape: MaterialStateProperty.all(CircleBorder()),
-              padding: MaterialStateProperty.all(EdgeInsets.all(45)),
+              padding: MaterialStateProperty.all(EdgeInsets.all(35)),
               backgroundColor:
                   MaterialStateProperty.all(mainBlue), // <-- Button color
               overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
