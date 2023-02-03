@@ -65,7 +65,7 @@ class _onoDefState extends State<onoDef>{
     return Padding(
       padding: const EdgeInsets.all(50),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           ElevatedButton(
             style: ButtonStyle(
@@ -89,11 +89,13 @@ class _onoDefState extends State<onoDef>{
               ),
             ),
           ),
-          Container(
-              padding: const EdgeInsets.all(20),
+          Flexible(
+              //padding: const EdgeInsets.all(20),
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
+
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
+
                   Text(model.onomatopoeia,
                     style: const TextStyle(
                         color: Colors.black87,

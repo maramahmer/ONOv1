@@ -281,7 +281,7 @@ final dummyData = [
   {
     "number": 27,
     "letter": "あ",
-    "onomatopoeia": "あんけ",
+    "onomatopoeia": "あんけあんけあんけあんけあんけあんけ",
     "transliteration": "an-ke",
     "feature": "古",
     "frequency": "Antiquated",
