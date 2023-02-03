@@ -55,6 +55,7 @@ class _onoDefState extends State<onoDef>{
           meaning(),
           onoBottomEn(),
           onoBottomJp(),
+          frequencyButton(),
         ],
       ),
     );
@@ -137,7 +138,9 @@ class _onoDefState extends State<onoDef>{
     return Padding(
         padding: const EdgeInsets.all(15),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+
           children : <Widget>[
             ElevatedButton(
             style: ButtonStyle(
@@ -161,12 +164,12 @@ class _onoDefState extends State<onoDef>{
               ),
             ),
           ),
-            Expanded(
+            Flexible(
                 //padding: const EdgeInsets.all(10),
                 child: Column(
                   children: <Widget>[
                     Container(
-                      margin: const EdgeInsets.only(left: 10.0, top: 20),
+                      margin: const EdgeInsets.only(left: 10.0, top: 5),
                       child: Text(model.meaningen,
                       style: const TextStyle(
                           color: Colors.black54,
@@ -186,7 +189,9 @@ class _onoDefState extends State<onoDef>{
     return Padding(
         padding: const EdgeInsets.all(15),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+
           children : <Widget>[
             ElevatedButton(
             style: ButtonStyle(
@@ -210,14 +215,12 @@ class _onoDefState extends State<onoDef>{
               ),
             ),
           ),
-            Expanded(
+            Flexible(
                 child: Column(
-                  //mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: <Widget>[
                     Container(
-                      margin: const EdgeInsets.only(left: 10.0, top: 20),
-
-                      child: Text(" ${model.meaningjp}",
+                      margin: const EdgeInsets.only(left: 10.0, top: 5),
+                      child: Text(model.meaningjp,
                       style: const TextStyle(
                         color: Colors.black54,
                         fontSize: 20,
@@ -226,6 +229,80 @@ class _onoDefState extends State<onoDef>{
                     ),
                   ],
                 )
+            ),
+          ],
+        )
+    );
+  }
+
+  frequencyButton(){
+    return Padding(
+        padding: const EdgeInsets.only(top: 30, left: 15),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.start,
+          crossAxisAlignment: CrossAxisAlignment.center,
+
+          children : <Widget>[
+            ElevatedButton(
+              style: ButtonStyle(
+                shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(35.0))),
+                padding: MaterialStateProperty.all(EdgeInsets.all(15)),
+                backgroundColor:
+                MaterialStateProperty.all(mainBlue), // <-- Button color
+                overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                  if (states.contains(MaterialState.pressed))
+                    return mainPink; // <-- Splash color
+                }),
+              ),
+              onPressed: () {
+                showDialog(
+
+                    context: context,
+                    builder: (context) => AlertDialog(
+                  shape: const RoundedRectangleBorder(
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))),
+                  contentPadding: const EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0, bottom: 20),
+                  title: const Text('Tip\n 。。。。。',
+                    style: TextStyle(fontSize: 21, color: mainBlue, fontWeight: FontWeight.bold),
+                    textAlign: TextAlign.center,
+                  ),
+
+                  content: const Text('Onomatopoeia can be labeled as Common, Infrequent, and Antiquated.\nInfrequent and antiquated onomatopoeia are unlikely to be used in conversation, but you may come across them in a written format!',
+                    style: TextStyle(fontSize: 19, wordSpacing: 1),
+                    textAlign: TextAlign.center,
+                  ),
+                  actions: [
+                    Center(
+                      child: Column(
+                        children:[
+                          ElevatedButton(
+                              onPressed: () {
+                                Navigator.pop(context);
+                              },
+                              style: ButtonStyle(
+                                  shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
+                                  padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
+                                  backgroundColor:
+                                  MaterialStateProperty.all(mainPink),
+                                  alignment: Alignment.center
+                              ),
+                              child: const Text('ok', style: TextStyle(fontSize: 17))),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
+                );
+              },
+              child: Text(
+                model.frequency,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 20,
+                ),
+              ),
             ),
           ],
         )
