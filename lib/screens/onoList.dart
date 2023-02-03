@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ono/constants.dart';
 import 'package:ono/model/listModel.dart';
 import 'package:ono/screens/home/homeScreen.dart';
+import 'package:ono/screens/onoDef.dart';
 import '../../model/emotionButton.dart';
 import 'package:ono/model/dummyData.dart';
 
@@ -131,6 +132,7 @@ class _onoList extends State<onoList> {
           )
         ],
       ),
+
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         child: ListTile(
@@ -151,6 +153,13 @@ class _onoList extends State<onoList> {
               ),
             ),
           ),
+          onTap: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return onoDef(model: model);
+            },
+            ),
+            );
+          },
           title: Text(model.onomatopoeia),
           subtitle: Text(
             model.transliteration,
@@ -161,9 +170,7 @@ class _onoList extends State<onoList> {
             color: mainPink,
           ),
         ),
-      )/*.ripple(() {
-        //Navigator.pushNamed(context, "/DetailPage", arguments: model);
-      }, borderRadius: BorderRadius.all(Radius.circular(20))),*/
+      ),
     );
   }
 
