@@ -5,7 +5,7 @@ const Color mainBlue = Color(0xFF5169A2);
 const Color desaturatedBlue = Color.fromARGB(137, 81, 105, 162);
 const Color bgColor = Color(0xFFE4DFDF);
 const Color darkBgColor = Color(0xFFD0CCCC);
-const Color lightBgColor = Color(0xFFFAF7F7);
+const Color lightBgColor = Color(0xFFF5F0F0);
 
 
 const Color textBlack = Color.fromARGB(255, 35, 37, 45);

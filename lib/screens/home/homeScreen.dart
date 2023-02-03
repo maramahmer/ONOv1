@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: () {
               showDialog(
+
                 context: context,
                 builder: (context) => AlertDialog(
                   shape: const RoundedRectangleBorder(
@@ -46,7 +47,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               },
                               style: ButtonStyle(
                                   shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
-                                  padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                                  padding: MaterialStateProperty.all(const EdgeInsets.all(10)),
                                   backgroundColor:
                                   MaterialStateProperty.all(mainPink),
                                   alignment: Alignment.center
@@ -62,7 +63,6 @@ class _HomeScreenState extends State<HomeScreen> {
         toolbarHeight: 35,
         backgroundColor: bgColor,
         elevation: 0,
-
         // not putting anything to navigate with in the top bar of main screen yet
         // for future development, a search button can be implemented to search all
       ),
@@ -112,7 +112,9 @@ class _HomeScreenState extends State<HomeScreen> {
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return SecondarySelectionScreen(emotionButton: emotionButton);
-            }));
+            },
+            ),
+            );
           },
           child: Container(
             height: 100,
