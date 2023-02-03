@@ -152,12 +152,14 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
             height: 40.0,
             child: MaterialButton(
               color: mainBlue,
+
               padding: const EdgeInsets.all(7),
               minWidth: 15,
               colorBrightness: Brightness.dark,
               onPressed: () => () {},
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(15.0)),
+
               child: Text(
                 widget.emotionButton.secondEmotionList[index],
                 textAlign: TextAlign.center,
