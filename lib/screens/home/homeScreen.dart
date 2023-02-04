@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:ono/constants.dart';
+import 'package:ono/screens/allSearchList.dart';
 import '../../model/emotionButton.dart';
 import '../secondarySelectionScreen.dart';
 
@@ -22,7 +23,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             onPressed: () {
               showDialog(
-
                 context: context,
                 builder: (context) => AlertDialog(
                   shape: const RoundedRectangleBorder(
@@ -60,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               );
             }),
-        toolbarHeight: 35,
+        toolbarHeight: 45,
         backgroundColor: bgColor,
         elevation: 0,
         // not putting anything to navigate with in the top bar of main screen yet
@@ -73,6 +73,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           header(), // how are you feeling
           gridEmotions(), // emotion buttons
+          showAll(),
         ],
       ),
     );
@@ -99,12 +100,12 @@ class _HomeScreenState extends State<HomeScreen> {
       itemCount: 8,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.all(3),
+      padding: const EdgeInsets.all(7),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
         mainAxisSpacing: 2,
         crossAxisSpacing: 0,
-        mainAxisExtent: 165,
+        mainAxisExtent: 145,
       ),
       itemBuilder: (context, index) {
         EmotionButton emotionButton = emoButton[index];
@@ -117,20 +118,20 @@ class _HomeScreenState extends State<HomeScreen> {
             );
           },
           child: Container(
-            height: 100,
+            //height: 10,
             decoration: BoxDecoration(
               //color: Colors.grey[200],
               color: bgColor,
               // CHANGE TO THIS ONCE REMAINDER OF BUTTON DONE TO MAKE TRANSPARENT
-              borderRadius: BorderRadius.circular(16),
+              borderRadius: BorderRadius.circular(20),
             ),
             child: Stack(
               children: [
                 Column(
-                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     const SizedBox(
-                      height: 9,
+                      height: 4,
                     ),
                     Center(
                       child: ClipRRect(
@@ -164,6 +165,56 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         );
       },
+    );
+  }
+
+  Widget showAll() {
+    // widget implementation for appbar message "can you narrow that down?"
+    return Padding(
+      padding: const EdgeInsets.all(defaultPadding),
+      child: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) {
+                return allSearchList();
+              }));
+            },
+            style: ButtonStyle(
+              shape: MaterialStateProperty.all(CircleBorder()),
+              padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+              backgroundColor:
+              MaterialStateProperty.all(mainPink), // <-- Button color
+              overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
+                if (states.contains(MaterialState.pressed))
+                  return mainBlue; // <-- Splash color
+              }),
+            ),
+            child: const Icon(
+              Icons.add,
+              size: 30,
+              color: Colors.white,
+            )
+            /*child: Text(
+              "show all",
+              textAlign: TextAlign.center,
+              style: Theme.of(context)
+                  .textTheme
+                  .titleLarge!
+                  .copyWith(fontWeight: FontWeight.w400, color: Colors.white),
+            ),*/
+          ),
+/*           Padding(
+              padding: const EdgeInsets.all(5),
+              child: Text(
+                widget.emotionButton.name,
+                style: Theme.of(context)
+                    .textTheme
+                    .titleLarge!
+                    .copyWith(fontWeight: FontWeight.w400, color: mainPink),
+              )), */
+        ],
+      ),
     );
   }
 }

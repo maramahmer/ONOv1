@@ -8,7 +8,7 @@ import 'package:ono/model/listModel.dart';
 import 'onoDef.dart';
 
 
-// When choosing show all
+// When choosing show all in one emotional category
 class onoListM extends StatefulWidget {
   const onoListM(
       {Key? key, required this.mainEmotion, required this.emotionButton})
@@ -37,6 +37,7 @@ class _onoListM extends State<onoListM> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: searchBar(),
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),
@@ -51,7 +52,8 @@ class _onoListM extends State<onoListM> {
                   Icons.home,
                   size: 30,
                 ),
-              )),
+              ),
+          ),
         ],
         backgroundColor: bgColor,
         elevation: 0,
@@ -166,4 +168,29 @@ class _onoListM extends State<onoListM> {
       ),
     );
   }
+
+  Widget searchBar(){
+    return Container(
+      width: double.infinity,
+      height: 40,
+      decoration: BoxDecoration(
+          color: lightBgColor, borderRadius: BorderRadius.circular(20)),
+      child: Center(
+        child: TextField(
+          decoration: InputDecoration(
+              prefixIcon: const Icon(Icons.search),
+              suffixIcon: IconButton(
+                icon: const Icon(Icons.clear),
+                onPressed: () {
+                  /* Clear the search field */
+                },
+              ),
+              hintText: 'Search...',
+              border: InputBorder.none
+          ),
+        ),
+      ),
+    );
+  }
+
 }

@@ -1,41 +1,34 @@
 import 'package:flutter/material.dart';
 import 'package:ono/constants.dart';
-import 'package:ono/model/listModel.dart';
 import 'package:ono/screens/home/homeScreen.dart';
-import 'package:ono/screens/onoDef.dart';
 import '../../model/emotionButton.dart';
 import 'package:ono/model/dummyData.dart';
+import 'package:ono/model/listModel.dart';
+
+import 'onoDef.dart';
 
 
-// This is for 2 emotions chosen
-class onoList extends StatefulWidget {
-  const onoList(
-      {Key? key,
-      required this.indexOno,
-      required this.mainEmotion,
-      required this.emotionButton})
-      : super(key: key);
-  // ADJUST THIS
-  final EmotionButton emotionButton;
-  final int indexOno;
-  final String mainEmotion;
+// When choosing show all in one emotional category
+class allSearchList extends StatefulWidget {
+  const allSearchList(
+      {Key? key, }) : super(key: key);
 
   @override
-  State<onoList> createState() => _onoList();
+  State<allSearchList> createState() => _allSearchList();
 }
 
-class _onoList extends State<onoList> {
+class _allSearchList extends State<allSearchList> {
   late List<listModel> onoDataList;
+
   @override
-  void initState(){
+  void initState() {
     onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
     super.initState();
   }
 
   int quantity = 1;
 
-  get indexNum => widget.indexOno;
-  get button => widget.mainEmotion;
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -48,13 +41,14 @@ class _onoList extends State<onoList> {
                   // pop everything and return to home
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) => HomeScreen()),
-                      (Route<dynamic> route) => false);
+                          (Route<dynamic> route) => false);
                 },
                 child: const Icon(
                   Icons.home,
                   size: 30,
                 ),
-              )),
+              ),
+          ),
         ],
         backgroundColor: bgColor,
         elevation: 0,
@@ -63,10 +57,10 @@ class _onoList extends State<onoList> {
         ),
       ),
       body: CustomScrollView(
+
         slivers: <Widget>[
           SliverList(delegate: SliverChildListDelegate(
             [
-
             ],
           ),
           ),
@@ -75,32 +69,29 @@ class _onoList extends State<onoList> {
       ),
     );
   }
-/*   
-  Widget createList(){
-    
-  } */
 
   Widget createList() {
+    /*return ListView(
+      shrinkWrap: true,
+      children: [
+        //Text(button),
+        Text(
+          widget.emotionButton.name,
+          textAlign: TextAlign.left,
+          style: Theme.of(context)
+              .textTheme
+              .headlineMedium!
+              .copyWith(fontWeight: FontWeight.w500, color: textBlack),
+        ),
+      ],
+    );*/
     return SliverList(
       delegate: SliverChildListDelegate(
         [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            /*children: <Widget>[
-              Text("     ${widget.emotionButton.name} > ${widget.emotionButton.secondEmotionList[indexNum]}",
-      style: Theme.of(context)
-          .textTheme
-          .titleLarge!
-          .copyWith(fontWeight: FontWeight.w400, color: desaturatedBlue),
-              ),
-*//*              IconButton(
-                  icon: Icon(
-                    Icons.sort,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () {})*//*
-            ],*/
           ),
+          //searchBar(),
           getList()
         ],
       ),
@@ -114,7 +105,7 @@ class _onoList extends State<onoList> {
         }).toList());
   }
 
-  Widget onoTile(listModel model){
+  Widget onoTile(listModel model) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: const BoxDecoration(
@@ -154,7 +145,7 @@ class _onoList extends State<onoList> {
               ),
             ),
           ),
-          onTap: (){
+          onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
               return onoDef(model: model);
             },
@@ -188,6 +179,7 @@ class _onoList extends State<onoList> {
               suffixIcon: IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
+
                   /* Clear the search field */
                 },
               ),
