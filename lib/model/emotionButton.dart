@@ -53,8 +53,8 @@ final emoButton = [
       id: '4',
       image: 'assets/images/Surprised.png',
       name: 'Surprised',
-      secondEmotionList: ["shocked", "discombobulated"],
-      length: 2),
+      secondEmotionList: ["shocked", "discombobulated", "startled"],
+      length: 3),
   EmotionButton(
       id: '5',
       image: 'assets/images/Fearful.png',

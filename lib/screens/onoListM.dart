@@ -23,10 +23,15 @@ class onoListM extends StatefulWidget {
 
 class _onoListM extends State<onoListM> {
   late List<listModel> onoDataList;
+  late List<listModel> parsedList;
+  List<listModel> _filtered = [];
+  List<listModel> _null_filtered = [];
 
   @override
   void initState() {
+
     onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
+    parsedList = [];
     super.initState();
   }
 
@@ -102,8 +107,14 @@ class _onoListM extends State<onoListM> {
   }
 
   Widget getList() {
+    onoDataList.forEach((item){
+      print(widget.mainEmotion);
+      if(item.mainemotion == widget.mainEmotion.toLowerCase()){
+        parsedList.add(item);
+      }
+    });
     return Column(
-        children: onoDataList.map((x) {
+        children: parsedList.map((x) {
           return onoTile(x);
         }).toList());
   }
@@ -188,9 +199,34 @@ class _onoListM extends State<onoListM> {
               hintText: 'Search...',
               border: InputBorder.none
           ),
+          onChanged: (value){
+            // _alterFilter(value);
+          },
         ),
       ),
     );
   }
 
-}
+/*  void _alterFilter(String query) {
+    List<listModel> onoDataList = [];
+    onoDataList.addAll(_filtered);
+    if (query.isNotEmpty) {
+      List<listModel> onoDataList = [];
+      onoDataList.forEach((item) {
+        if (item.onomatopoeia.contains(query) || item.transliteration.contains(query)) { //if you want to search it order by id you can change item.name.contains to item.id.contains
+          onoDataList.add(item);
+        }
+      });
+      setState(() {
+        _filtered.clear();
+        _filtered.addAll(onoDataList); //dummyListData will place all the data that match at your search bar
+      });
+      return;
+    } else {
+      setState(() {
+        _filtered.clear();
+        _filtered.addAll(_null_filtered); //_null_filtered will place all the data if search bar was empty after enter a words
+      });
+    }*/
+  }
+

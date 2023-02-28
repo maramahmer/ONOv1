@@ -13,12 +13,15 @@ class onoList extends StatefulWidget {
       {Key? key,
       required this.indexOno,
       required this.mainEmotion,
-      required this.emotionButton})
+      required this.emotionButton,
+      required this.subEmotion
+      })
       : super(key: key);
   // ADJUST THIS
   final EmotionButton emotionButton;
   final int indexOno;
   final String mainEmotion;
+  final String subEmotion;
 
   @override
   State<onoList> createState() => _onoList();
@@ -26,9 +29,12 @@ class onoList extends StatefulWidget {
 
 class _onoList extends State<onoList> {
   late List<listModel> onoDataList;
+  late List<listModel> parsedList;
+
   @override
   void initState(){
     onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
+    parsedList = [];
     super.initState();
   }
 
@@ -108,8 +114,14 @@ class _onoList extends State<onoList> {
   }
 
   Widget getList() {
+    onoDataList.forEach((item){
+      print(widget.mainEmotion);
+      if(item.mainemotion == widget.mainEmotion.toLowerCase() && item.subemotion == widget.subEmotion.toLowerCase()){
+        parsedList.add(item);
+      }
+    });
     return Column(
-        children: onoDataList.map((x) {
+        children: parsedList.map((x) {
           return onoTile(x);
         }).toList());
   }

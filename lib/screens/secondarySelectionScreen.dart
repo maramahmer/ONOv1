@@ -244,6 +244,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
                 emotionButton: widget.emotionButton,
                 indexOno: index,
                 mainEmotion: widget.emotionButton.name,
+                subEmotion: widget.emotionButton.secondEmotionList[index],
               );
             }));
           },
