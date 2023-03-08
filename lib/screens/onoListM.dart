@@ -207,26 +207,30 @@ class _onoListM extends State<onoListM> {
     );
   }
 
-/*  void _alterFilter(String query) {
-    List<listModel> onoDataList = [];
-    onoDataList.addAll(_filtered);
+  void _alterFilter(String query) {
+    List<listModel> searchList = [];
+    searchList.addAll(_filtered);
     if (query.isNotEmpty) {
-      List<listModel> onoDataList = [];
-      onoDataList.forEach((item) {
-        if (item.onomatopoeia.contains(query) || item.transliteration.contains(query)) { //if you want to search it order by id you can change item.name.contains to item.id.contains
-          onoDataList.add(item);
+      List<listModel> searchList = [];
+      parsedList.forEach((item) {
+        if (item.onomatopoeia.contains(query) || item.transliteration.contains(
+            query)) { //if you want to search it order by id you can change item.name.contains to item.id.contains
+          searchList.add(item);
         }
       });
       setState(() {
         _filtered.clear();
-        _filtered.addAll(onoDataList); //dummyListData will place all the data that match at your search bar
+        _filtered.addAll(
+            searchList); //dummyListData will place all the data that match at your search bar
       });
       return;
     } else {
       setState(() {
         _filtered.clear();
-        _filtered.addAll(_null_filtered); //_null_filtered will place all the data if search bar was empty after enter a words
+        _filtered.addAll(
+            _null_filtered); //_null_filtered will place all the data if search bar was empty after enter a words
       });
-    }*/
+    }
+  }
   }
 
