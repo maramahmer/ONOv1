@@ -7,11 +7,11 @@ import 'package:ono/model/listModel.dart';
 
 import 'onoDef.dart';
 
-
 // When choosing show all in one emotional category
 class allSearchListEmo extends StatefulWidget {
-  const allSearchListEmo(
-      {Key? key, }) : super(key: key);
+  const allSearchListEmo({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<allSearchListEmo> createState() => _allSearchList();
@@ -22,12 +22,13 @@ class _allSearchList extends State<allSearchListEmo> {
 
   @override
   void initState() {
-    onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
+    onoDataList = dummyData
+        .map((x) => listModel.fromJson(x as Map<String, dynamic>))
+        .toList();
     super.initState();
   }
 
   int quantity = 1;
-
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,19 +36,19 @@ class _allSearchList extends State<allSearchListEmo> {
         title: searchBar(),
         actions: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  // pop everything and return to home
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                          (Route<dynamic> route) => false);
-                },
-                child: const Icon(
-                  Icons.home,
-                  size: 30,
-                ),
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                // pop everything and return to home
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    (Route<dynamic> route) => false);
+              },
+              child: const Icon(
+                Icons.home,
+                size: 30,
               ),
+            ),
           ),
         ],
         backgroundColor: bgColor,
@@ -57,12 +58,11 @@ class _allSearchList extends State<allSearchListEmo> {
         ),
       ),
       body: CustomScrollView(
-
         slivers: <Widget>[
-          SliverList(delegate: SliverChildListDelegate(
-            [
-            ],
-          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [],
+            ),
           ),
           createList()
         ],
@@ -101,8 +101,8 @@ class _allSearchList extends State<allSearchListEmo> {
   Widget getList() {
     return Column(
         children: onoDataList.map((x) {
-          return onoTile(x);
-        }).toList());
+      return onoTile(x);
+    }).toList());
   }
 
   Widget onoTile(listModel model) {
@@ -124,7 +124,6 @@ class _allSearchList extends State<allSearchListEmo> {
           )
         ],
       ),
-
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         child: ListTile(
@@ -146,10 +145,13 @@ class _allSearchList extends State<allSearchListEmo> {
             ),
           ),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return onoDef(model: model);
-            },
-            ),
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return onoDef(model: model);
+                },
+              ),
             );
           },
           title: Text(model.onomatopoeia),
@@ -166,7 +168,7 @@ class _allSearchList extends State<allSearchListEmo> {
     );
   }
 
-  Widget searchBar(){
+  Widget searchBar() {
     return Container(
       width: double.infinity,
       height: 40,
@@ -179,16 +181,13 @@ class _allSearchList extends State<allSearchListEmo> {
               suffixIcon: IconButton(
                 icon: const Icon(Icons.clear),
                 onPressed: () {
-
                   /* Clear the search field */
                 },
               ),
               hintText: 'Search...',
-              border: InputBorder.none
-          ),
+              border: InputBorder.none),
         ),
       ),
     );
   }
-
 }

@@ -7,7 +7,6 @@ import 'package:ono/model/listModel.dart';
 
 import 'onoDef.dart';
 
-
 // When choosing show all in one emotional category
 class onoListM extends StatefulWidget {
   const onoListM(
@@ -29,8 +28,9 @@ class _onoListM extends State<onoListM> {
 
   @override
   void initState() {
-
-    onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
+    onoDataList = dummyData
+        .map((x) => listModel.fromJson(x as Map<String, dynamic>))
+        .toList();
     parsedList = [];
     super.initState();
   }
@@ -45,19 +45,19 @@ class _onoListM extends State<onoListM> {
         title: searchBar(),
         actions: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  // pop everything and return to home
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                          (Route<dynamic> route) => false);
-                },
-                child: const Icon(
-                  Icons.home,
-                  size: 30,
-                ),
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                // pop everything and return to home
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    (Route<dynamic> route) => false);
+              },
+              child: const Icon(
+                Icons.home,
+                size: 30,
               ),
+            ),
           ),
         ],
         backgroundColor: bgColor,
@@ -68,10 +68,10 @@ class _onoListM extends State<onoListM> {
       ),
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverList(delegate: SliverChildListDelegate(
-            [
-            ],
-          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [],
+            ),
           ),
           createList()
         ],
@@ -107,16 +107,16 @@ class _onoListM extends State<onoListM> {
   }
 
   Widget getList() {
-    onoDataList.forEach((item){
+    onoDataList.forEach((item) {
       print(widget.mainEmotion);
-      if(item.mainemotion == widget.mainEmotion.toLowerCase()){
+      if (item.mainemotion == widget.mainEmotion.toLowerCase()) {
         parsedList.add(item);
       }
     });
     return Column(
         children: parsedList.map((x) {
-          return onoTile(x);
-        }).toList());
+      return onoTile(x);
+    }).toList());
   }
 
   Widget onoTile(listModel model) {
@@ -138,7 +138,6 @@ class _onoListM extends State<onoListM> {
           )
         ],
       ),
-
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         child: ListTile(
@@ -160,10 +159,13 @@ class _onoListM extends State<onoListM> {
             ),
           ),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return onoDef(model: model);
-            },
-            ),
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return onoDef(model: model);
+                },
+              ),
             );
           },
           title: Text(model.onomatopoeia),
@@ -180,7 +182,7 @@ class _onoListM extends State<onoListM> {
     );
   }
 
-  Widget searchBar(){
+  Widget searchBar() {
     return Container(
       width: double.infinity,
       height: 40,
@@ -197,9 +199,8 @@ class _onoListM extends State<onoListM> {
                 },
               ),
               hintText: 'Search...',
-              border: InputBorder.none
-          ),
-          onChanged: (value){
+              border: InputBorder.none),
+          onChanged: (value) {
             // _alterFilter(value);
           },
         ),
@@ -228,5 +229,4 @@ class _onoListM extends State<onoListM> {
         _filtered.addAll(_null_filtered); //_null_filtered will place all the data if search bar was empty after enter a words
       });
     }*/
-  }
-
+}

@@ -6,7 +6,6 @@ import 'package:ono/screens/onoDef.dart';
 import '../../model/emotionButton.dart';
 import 'package:ono/model/dummyData.dart';
 
-
 // This is for 2 emotions chosen
 class onoList extends StatefulWidget {
   const onoList(
@@ -14,8 +13,7 @@ class onoList extends StatefulWidget {
       required this.indexOno,
       required this.mainEmotion,
       required this.emotionButton,
-      required this.subEmotion
-      })
+      required this.subEmotion})
       : super(key: key);
   // ADJUST THIS
   final EmotionButton emotionButton;
@@ -32,8 +30,10 @@ class _onoList extends State<onoList> {
   late List<listModel> parsedList;
 
   @override
-  void initState(){
-    onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
+  void initState() {
+    onoDataList = dummyData
+        .map((x) => listModel.fromJson(x as Map<String, dynamic>))
+        .toList();
     parsedList = [];
     super.initState();
   }
@@ -70,11 +70,10 @@ class _onoList extends State<onoList> {
       ),
       body: CustomScrollView(
         slivers: <Widget>[
-          SliverList(delegate: SliverChildListDelegate(
-            [
-
-            ],
-          ),
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [],
+            ),
           ),
           createList()
         ],
@@ -99,12 +98,12 @@ class _onoList extends State<onoList> {
           .titleLarge!
           .copyWith(fontWeight: FontWeight.w400, color: desaturatedBlue),
               ),
-*//*              IconButton(
+*/ /*              IconButton(
                   icon: Icon(
                     Icons.sort,
                     color: Theme.of(context).primaryColor,
                   ),
-                  onPressed: () {})*//*
+                  onPressed: () {})*/ /*
             ],*/
           ),
           getList()
@@ -114,19 +113,20 @@ class _onoList extends State<onoList> {
   }
 
   Widget getList() {
-    onoDataList.forEach((item){
+    onoDataList.forEach((item) {
       print(widget.mainEmotion);
-      if(item.mainemotion == widget.mainEmotion.toLowerCase() && item.subemotion == widget.subEmotion.toLowerCase()){
+      if (item.mainemotion == widget.mainEmotion.toLowerCase() &&
+          item.subemotion == widget.subEmotion.toLowerCase()) {
         parsedList.add(item);
       }
     });
     return Column(
         children: parsedList.map((x) {
-          return onoTile(x);
-        }).toList());
+      return onoTile(x);
+    }).toList());
   }
 
-  Widget onoTile(listModel model){
+  Widget onoTile(listModel model) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: const BoxDecoration(
@@ -145,7 +145,6 @@ class _onoList extends State<onoList> {
           )
         ],
       ),
-
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         child: ListTile(
@@ -166,11 +165,14 @@ class _onoList extends State<onoList> {
               ),
             ),
           ),
-          onTap: (){
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return onoDef(model: model);
-            },
-            ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return onoDef(model: model);
+                },
+              ),
             );
           },
           title: Text(model.onomatopoeia),
@@ -187,7 +189,7 @@ class _onoList extends State<onoList> {
     );
   }
 
-  Widget searchBar(){
+  Widget searchBar() {
     return Container(
       width: double.infinity,
       height: 40,
@@ -204,11 +206,9 @@ class _onoList extends State<onoList> {
                 },
               ),
               hintText: 'Search...',
-              border: InputBorder.none
-          ),
+              border: InputBorder.none),
         ),
       ),
     );
   }
-
 }
