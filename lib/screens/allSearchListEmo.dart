@@ -8,7 +8,7 @@ import 'package:ono/model/listModel.dart';
 import 'onoDef.dart';
 
 
-// When choosing show all in one emotional category
+// When choosing show all
 class allSearchListEmo extends StatefulWidget {
   const allSearchListEmo(
       {Key? key, }) : super(key: key);
