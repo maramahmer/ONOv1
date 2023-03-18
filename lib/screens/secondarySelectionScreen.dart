@@ -225,18 +225,19 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
 
   Widget gridEmotionsSec() {
     return GridView.builder(
-      itemCount: widget.emotionButton.secondEmotionList.length,
+      //itemCount: widget.emotionButton.secondEmotionList.length,
+      itemCount: widget.emotionButton.length,
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      // scrolling issue here? come back to this
+      //physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.all(25),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1,
+        crossAxisCount: 2,
         mainAxisSpacing: 20,
         crossAxisSpacing: 10,
         mainAxisExtent: 60,
       ),
       itemBuilder: (context, index) {
-        EmotionButton emotionButton = emoButton[index];
         return GestureDetector(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {

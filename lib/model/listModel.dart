@@ -36,43 +36,43 @@ class listModel {
     required String subemotion,
 })=>
       listModel(
-          number: number ?? this.number,
-          letter: letter ?? this.letter,
-          onomatopoeia: onomatopoeia ?? this.onomatopoeia,
-          transliteration: transliteration ?? this.transliteration,
-          frequency: frequency ?? this.frequency,
-          meaningjp: meaningjp ?? this.meaningjp,
-          meaningen: meaningen ?? this.meaningen,
-          mainemotion: mainemotion ?? this.mainemotion,
-          subemotion: subemotion ?? this.subemotion
+          number: number,
+          letter: letter,
+          onomatopoeia: onomatopoeia,
+          transliteration: transliteration,
+          frequency: frequency,
+          meaningjp: meaningjp,
+          meaningen: meaningen,
+          mainemotion: mainemotion,
+          subemotion: subemotion
       );
 
   factory listModel.fromRawJson(String str) => listModel.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());
 
-  factory listModel.fromJson(Map<String, dynamic> json) => listModel(
-    number: json["number"] == null ? null: json["number"],
-    letter: json["letter"] == null ? null: json["letter"],
-    onomatopoeia: json["onomatopoeia"] == null ? null: json["onomatopoeia"],
-    transliteration: json["transliteration"] == null ? null: json["transliteration"],
-    frequency: json["frequency"] == null ? null: json["frequency"],
-    meaningjp: json["meaningjp"] == null ? null: json["meaningjp"],
-    meaningen: json["meaningen"] == null ? null: json["meaningen"],
-    mainemotion: json["mainemotion"] == null ? null: json["mainemotion"],
-    subemotion: json["subemotion"] == null ? null: json["subemotion"],
+  factory listModel.fromJson(Map<String, Object> json) => listModel(
+    number: json["number"] as int,
+    letter: json["letter"] as String,
+    onomatopoeia: json["onomatopoeia"] as String,
+    transliteration: json["transliteration"] as String,
+    frequency: json["frequency"] as String,
+    meaningjp: json["meaningjp"] as String,
+    meaningen: json["meaningen"] as String,
+    mainemotion: json["mainemotion"] as String,
+    subemotion: json["subemotion"] as String,
   );
 
   Map<String, dynamic> toJson() => {
-    "number": number == null ? null : number,
-    "letter": letter == null ? null : letter,
-    "onomatopoeia": onomatopoeia == null ? null : onomatopoeia,
-    "transliteration": transliteration == null ? null : transliteration,
-    "frequency": frequency == null ? null : frequency,
-    "meaningjp": meaningjp == null ? null : meaningjp,
-    "meaningen": meaningen == null ? null : meaningen,
-    "mainemotion": mainemotion == null ? null : mainemotion,
-    "subemotion": subemotion == null ? null : subemotion,
+    "number": number,
+    "letter": letter,
+    "onomatopoeia": onomatopoeia,
+    "transliteration": transliteration,
+    "frequency": frequency,
+    "meaningjp": meaningjp,
+    "meaningen": meaningen,
+    "mainemotion": mainemotion,
+    "subemotion": subemotion,
 
   };
 }

@@ -53,6 +53,7 @@ final emoButton = [
         "vulnerable"
       ],
       length: 15),
+
   EmotionButton(
       id: '2',
       image: 'assets/images/Angry.png',
@@ -68,6 +69,7 @@ final emoButton = [
         "tense"
       ],
       length: 8),
+
   EmotionButton(
       id: '3',
       image: 'assets/images/Sad.png',
@@ -82,12 +84,14 @@ final emoButton = [
         "vulnerable",
       ],
       length: 7),
+
   EmotionButton(
       id: '4',
       image: 'assets/images/Surprised.png',
       name: 'Surprised',
       secondEmotionList: ["confused", "dismayed", "shocked", "startled"],
       length: 4),
+
   EmotionButton(
       id: '5',
       image: 'assets/images/Fearful.png',
@@ -104,8 +108,8 @@ final emoButton = [
         "shocked",
         "tense",
         "terrified",
-        "threatened"
-            "worried"
+        "threatened",
+        "worried"
       ],
       length: 13),
   EmotionButton(
@@ -143,8 +147,8 @@ final emoButton = [
         "restless",
         "stressed",
         "tired",
-        "uncaring"
-            "unclear",
+        "uncaring",
+        "unclear",
         "uncomfortable",
         "unfeeling",
         "unfocused",

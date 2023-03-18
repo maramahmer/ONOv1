@@ -29,7 +29,7 @@ class _onoListM extends State<onoListM> {
   @override
   void initState() {
     onoDataList = dummyData
-        .map((x) => listModel.fromJson(x as Map<String, dynamic>))
+        .map((x) => listModel.fromJson(x))
         .toList();
     parsedList = [];
     super.initState();
@@ -80,20 +80,6 @@ class _onoListM extends State<onoListM> {
   }
 
   Widget createList() {
-    /*return ListView(
-      shrinkWrap: true,
-      children: [
-        //Text(button),
-        Text(
-          widget.emotionButton.name,
-          textAlign: TextAlign.left,
-          style: Theme.of(context)
-              .textTheme
-              .headlineMedium!
-              .copyWith(fontWeight: FontWeight.w500, color: textBlack),
-        ),
-      ],
-    );*/
     return SliverList(
       delegate: SliverChildListDelegate(
         [
@@ -207,26 +193,4 @@ class _onoListM extends State<onoListM> {
       ),
     );
   }
-
-/*  void _alterFilter(String query) {
-    List<listModel> onoDataList = [];
-    onoDataList.addAll(_filtered);
-    if (query.isNotEmpty) {
-      List<listModel> onoDataList = [];
-      onoDataList.forEach((item) {
-        if (item.onomatopoeia.contains(query) || item.transliteration.contains(query)) { //if you want to search it order by id you can change item.name.contains to item.id.contains
-          onoDataList.add(item);
-        }
-      });
-      setState(() {
-        _filtered.clear();
-        _filtered.addAll(onoDataList); //dummyListData will place all the data that match at your search bar
-      });
-      return;
-    } else {
-      setState(() {
-        _filtered.clear();
-        _filtered.addAll(_null_filtered); //_null_filtered will place all the data if search bar was empty after enter a words
-      });
-    }*/
 }
