@@ -31,19 +31,19 @@ class listModel {
   String mainemotion;
   String subemotion;
 
-  factory listModel.fromJson(Map<String, dynamic> json) => listModel(
-    number: json["number"],
-    letter: json["letter"],
-    onomatopoeia: json["onomatopoeia"],
-    transliteration: json["transliteration"],
-    frequency: json["frequency"],
-    meaningjp: json["meaningjp"],
-    meaningen: json["meaningen"],
-    mainemotion: json["mainemotion"],
-    subemotion: json["subemotion"],
+  factory listModel.fromJson(Map<String, Object> json) => listModel(
+    number: json["number"] as int,
+    letter: json["letter"] as String,
+    onomatopoeia: json["onomatopoeia"] as String,
+    transliteration: json["transliteration"] as String,
+    frequency: json["frequency"] as String,
+    meaningjp: json["meaningjp"] as String,
+    meaningen: json["meaningen"] as String,
+    mainemotion: json["mainemotion"] as String,
+    subemotion: json["subemotion"] as String,
   );
 
-  Map<String, dynamic> toJson() => {
+  Map<String, Object> toJson() => {
     "number": number,
     "letter": letter,
     "onomatopoeia": onomatopoeia,
