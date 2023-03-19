@@ -28,7 +28,7 @@ class _onoListM extends State<onoListM> {
   @override
   void initState() {
 
-    onoDataList = dummyData.map((x) => listModel.fromJson(x as Map<String, Object>)).toList();
+    onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
     parsedList = [];
     super.initState();
   }

@@ -23,7 +23,7 @@ class _allSearchList extends State<allSearchListEmo> {
   @override
   void initState() {
     onoDataList = dummyData.map(
-            (x) => listModel.fromJson(x as Map<String, Object>)
+            (x) => listModel.fromJson(x)
     ).toList();
 
     super.initState();

@@ -1,5 +1,4 @@
 final dummyData = [
-  [
     {
       "number": 1,
       "letter": "あ",
@@ -3458,5 +3457,4 @@ final dummyData = [
       "mainemotion": "physical",
       "subemotion": "tired"
     }
-  ]
 ];
