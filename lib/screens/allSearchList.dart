@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:ono/constants.dart';
 import 'package:ono/screens/home/homeScreen.dart';
@@ -23,6 +25,7 @@ class _allSearchList extends State<allSearchList> {
   @override
   void initState() {
     onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
+
     super.initState();
   }
 

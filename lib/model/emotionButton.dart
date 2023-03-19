@@ -14,20 +14,20 @@ class EmotionButton {
   int length;
 
   factory EmotionButton.fromJson(Map<String, dynamic> json) => EmotionButton(
-        id: json["id"],
-        image: json["image"],
-        name: json["name"],
-        secondEmotionList: json["list"],
-        length: json["length"],
-      );
+    id: json["id"],
+    image: json["image"],
+    name: json["name"],
+    secondEmotionList: json["list"],
+    length: json["length"],
+  );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "image": image,
-        "name": name,
-        "secondEmotionList": secondEmotionList,
-        "length": length,
-      };
+    "id": id,
+    "image": image,
+    "name": name,
+    "secondEmotionList": secondEmotionList,
+    "length": length,
+  };
 }
 
 final emoButton = [
@@ -35,32 +35,83 @@ final emoButton = [
       id: '1',
       image: 'assets/images/Happy.png',
       name: 'Happy',
-      secondEmotionList: ["elated", "content"],
-      length: 2),
+      secondEmotionList: [
+        "carefree",
+        "cheerful",
+        "complacent",
+        "confident",
+        "content",
+        "elated",
+        "excited",
+        "laughing",
+        "loving",
+        "moved",
+        "optimistic",
+        "playful",
+        "pleased",
+        "relaxed",
+        "vulnerable"
+      ],
+      length: 15),
+
   EmotionButton(
       id: '2',
       image: 'assets/images/Angry.png',
       name: 'Angry',
-      secondEmotionList: ["enraged", "frustrated"],
-      length: 2),
+      secondEmotionList: [
+        "enraged",
+        "frustrated",
+        "humiliated",
+        "critical",
+        "aggressive",
+        "irritated",
+        "cruel",
+        "tense"
+      ],
+      length: 8),
+
   EmotionButton(
       id: '3',
       image: 'assets/images/Sad.png',
       name: 'Sad',
-      secondEmotionList: ["depressed", "really sad"],
-      length: 2),
+      secondEmotionList: [
+        "crying",
+        "depressed",
+        "despair",
+        "disappointed",
+        "down",
+        "lonely",
+        "vulnerable",
+      ],
+      length: 7),
+
   EmotionButton(
       id: '4',
       image: 'assets/images/Surprised.png',
       name: 'Surprised',
-      secondEmotionList: ["shocked", "discombobulated", "startled"],
-      length: 3),
+      secondEmotionList: ["confused", "dismayed", "shocked", "startled"],
+      length: 4),
+
   EmotionButton(
       id: '5',
       image: 'assets/images/Fearful.png',
       name: 'Fearful',
-      secondEmotionList: ["terrified", "uncomfortable"],
-      length: 2),
+      secondEmotionList: [
+        "anxious",
+        "confused",
+        "helpless",
+        "hesitant",
+        "insecure",
+        "nervous",
+        "restless",
+        "shaken",
+        "shocked",
+        "tense",
+        "terrified",
+        "threatened",
+        "worried"
+      ],
+      length: 13),
   EmotionButton(
       id: '6',
       image: 'assets/images/Disgusted.png',
@@ -71,12 +122,65 @@ final emoButton = [
       id: '7',
       image: 'assets/images/Bad.png',
       name: 'Bad',
-      secondEmotionList: ["tired", "exhausted"],
-      length: 2),
+      secondEmotionList: [
+        "annoyed",
+        "awkward",
+        "careless",
+        "conflicted",
+        "confused",
+        "depressed",
+        "disappointed",
+        "disgusted",
+        "disorganized",
+        "disruptive",
+        "dizzy",
+        "down",
+        "embarassed",
+        "frustrated",
+        "hurt",
+        "indifferent",
+        "inflexible",
+        "mocking",
+        "nervous",
+        "overwhelmed",
+        "pain",
+        "restless",
+        "stressed",
+        "tired",
+        "uncaring",
+        "unclear",
+        "uncomfortable",
+        "unfeeling",
+        "unfocused",
+        "unmotivated",
+        "unstable",
+        "upset",
+        "vulnerable",
+        "worried"
+      ],
+      length: 34),
   EmotionButton(
       id: '8',
       image: 'assets/images/Physical.png',
       name: 'Physical',
-      secondEmotionList: ["pain", "pleasure", "dizzy", "discomfort"],
-      length: 4)
+      secondEmotionList: [
+        "consiousness",
+        "dizzy",
+        "exertion",
+        "hard",
+        "healthy",
+        "ill",
+        "overwhelmed",
+        "pain",
+        "pleasure",
+        "relaxed",
+        "sensation",
+        "stressed",
+        "strong",
+        "tired",
+        "unhealthy",
+        "unwell",
+        "weak"
+      ],
+      length: 17)
 ];

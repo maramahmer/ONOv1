@@ -31,7 +31,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
                   // pop everything and return to home
                   Navigator.of(context).pushAndRemoveUntil(
                       MaterialPageRoute(builder: (context) => HomeScreen()),
-                      (Route<dynamic> route) => false);
+                          (Route<dynamic> route) => false);
                 },
                 child: const Icon(
                   Icons.home,
@@ -56,7 +56,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
           SizedBox(
             height: 500,
             child: //listEmotions(),
-                gridEmotionsSec(),
+            gridEmotionsSec(),
           ),
 
           showAll(), // show all ono in the broad category
@@ -79,8 +79,8 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             //padding: const EdgeInsets.all(10),
-              children: <Widget>[
-                Text(
+            children: <Widget>[
+              Text(
                 "       ${widget.emotionButton.name}",
                 style: const TextStyle(color: mainBlue, fontSize: 20),
               ),
@@ -95,9 +95,9 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
                       builder: (context) => AlertDialog(
                         shape: const RoundedRectangleBorder(
                             borderRadius: BorderRadius.all(Radius.circular(20.0))),
-                          contentPadding: const EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0, bottom: 20),
+                        contentPadding: const EdgeInsets.only(top: 20.0, right: 20.0, left: 20.0, bottom: 20),
                         title: const Text('ONO Emotion Specification Instructions\n 。。。。。',
-                            style: TextStyle(fontSize: 21, color: mainBlue, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 21, color: mainBlue, fontWeight: FontWeight.bold),
                           textAlign: TextAlign.center,
                         ),
 
@@ -107,28 +107,28 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
                         ),
                         actions: [
                           Center(
-                          child: Column(
-                            children:[
-                              ElevatedButton(
-                                  onPressed: () {
-                                    Navigator.pop(context);
+                            child: Column(
+                              children:[
+                                ElevatedButton(
+                                    onPressed: () {
+                                      Navigator.pop(context);
                                     },
-                                  style: ButtonStyle(
-                                      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
-                                      padding: MaterialStateProperty.all(EdgeInsets.all(10)),
-                                      backgroundColor:
-                                      MaterialStateProperty.all(mainPink),
-                                      alignment: Alignment.center
-                                  ),
-                                  child: const Text('ok', style: TextStyle(fontSize: 17))),
-                            ],
-                          ),
+                                    style: ButtonStyle(
+                                        shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(18.0))),
+                                        padding: MaterialStateProperty.all(EdgeInsets.all(10)),
+                                        backgroundColor:
+                                        MaterialStateProperty.all(mainPink),
+                                        alignment: Alignment.center
+                                    ),
+                                    child: const Text('ok', style: TextStyle(fontSize: 17))),
+                              ],
+                            ),
                           ),
                         ],
                       ),
                     );
                   })
-          ],
+            ],
           ),
         ],
       ),
@@ -194,7 +194,7 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
               shape: MaterialStateProperty.all(CircleBorder()),
               padding: MaterialStateProperty.all(EdgeInsets.all(35)),
               backgroundColor:
-                  MaterialStateProperty.all(mainBlue), // <-- Button color
+              MaterialStateProperty.all(mainBlue), // <-- Button color
               overlayColor: MaterialStateProperty.resolveWith<Color?>((states) {
                 if (states.contains(MaterialState.pressed))
                   return mainPink; // <-- Splash color
@@ -225,18 +225,19 @@ class _SecondarySelectionScreenState extends State<SecondarySelectionScreen> {
 
   Widget gridEmotionsSec() {
     return GridView.builder(
-      itemCount: widget.emotionButton.secondEmotionList.length,
+      //itemCount: widget.emotionButton.secondEmotionList.length,
+      itemCount: widget.emotionButton.length,
       shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
+      // scrolling issue here? come back to this
+      //physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.all(25),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 1,
+        crossAxisCount: 2,
         mainAxisSpacing: 20,
         crossAxisSpacing: 10,
         mainAxisExtent: 60,
       ),
       itemBuilder: (context, index) {
-        EmotionButton emotionButton = emoButton[index];
         return GestureDetector(
           onTap: () {
             Navigator.push(context, MaterialPageRoute(builder: (context) {
