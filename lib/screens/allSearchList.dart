@@ -21,6 +21,9 @@ class allSearchList extends StatefulWidget {
 
 class _allSearchList extends State<allSearchList> {
   late List<listModel> onoDataList;
+  late List<listModel> searchList;
+
+  get editingController => null;
 
   @override
   void initState() {
@@ -74,20 +77,6 @@ class _allSearchList extends State<allSearchList> {
   }
 
   Widget createList() {
-    /*return ListView(
-      shrinkWrap: true,
-      children: [
-        //Text(button),
-        Text(
-          widget.emotionButton.name,
-          textAlign: TextAlign.left,
-          style: Theme.of(context)
-              .textTheme
-              .headlineMedium!
-              .copyWith(fontWeight: FontWeight.w500, color: textBlack),
-        ),
-      ],
-    );*/
     return SliverList(
       delegate: SliverChildListDelegate(
         [
@@ -169,6 +158,19 @@ class _allSearchList extends State<allSearchList> {
     );
   }
 
+  Widget getSearchList(String word) {
+    onoDataList.forEach((item){
+      print(word);
+      if(item.onomatopoeia == word.toLowerCase() && item.transliteration == word.toLowerCase()){
+        searchList.add(item);
+      }
+    });
+    return Column(
+        children: searchList.map((x) {
+          return onoTile(x);
+        }).toList());
+  }
+
   Widget searchBar(){
     return Container(
       width: double.infinity,
@@ -177,20 +179,19 @@ class _allSearchList extends State<allSearchList> {
           color: lightBgColor, borderRadius: BorderRadius.circular(20)),
       child: Center(
         child: TextField(
-          decoration: InputDecoration(
-              prefixIcon: const Icon(Icons.search),
-              suffixIcon: IconButton(
-                icon: const Icon(Icons.clear),
-                onPressed: () {
-
-                  /* Clear the search field */
-                },
-              ),
+          onChanged: (query){
+            getSearchList(query);
+            /* Clear the search field */
+          },
+          controller: editingController,
+          decoration: const InputDecoration(
+              prefixIcon: Icon(Icons.search),
+                icon: Icon(Icons.clear),
               hintText: 'Search...',
               border: InputBorder.none
           ),
         ),
-      ),
+    ),
     );
   }
 

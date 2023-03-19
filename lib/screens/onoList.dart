@@ -92,20 +92,6 @@ class _onoList extends State<onoList> {
         [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            /*children: <Widget>[
-              Text("     ${widget.emotionButton.name} > ${widget.emotionButton.secondEmotionList[indexNum]}",
-      style: Theme.of(context)
-          .textTheme
-          .titleLarge!
-          .copyWith(fontWeight: FontWeight.w400, color: desaturatedBlue),
-              ),
-*//*              IconButton(
-                  icon: Icon(
-                    Icons.sort,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () {})*//*
-            ],*/
           ),
           getList()
         ],
