@@ -9,11 +9,11 @@ import 'package:ono/model/listModel.dart';
 
 import 'onoDef.dart';
 
-
 // When choosing show all in one emotional category
 class allSearchList extends StatefulWidget {
-  const allSearchList(
-      {Key? key, }) : super(key: key);
+  const allSearchList({
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<allSearchList> createState() => _allSearchList();
@@ -21,19 +21,17 @@ class allSearchList extends StatefulWidget {
 
 class _allSearchList extends State<allSearchList> {
   late List<listModel> onoDataList;
-  late List<listModel> searchList;
 
   get editingController => null;
 
   @override
   void initState() {
-    onoDataList  = dummyData.map((x) => listModel.fromJson(x)).toList();
+    onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
 
     super.initState();
   }
 
   int quantity = 1;
-
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,19 +39,19 @@ class _allSearchList extends State<allSearchList> {
         title: searchBar(),
         actions: <Widget>[
           Padding(
-              padding: EdgeInsets.only(right: 20.0),
-              child: GestureDetector(
-                onTap: () {
-                  // pop everything and return to home
-                  Navigator.of(context).pushAndRemoveUntil(
-                      MaterialPageRoute(builder: (context) => HomeScreen()),
-                          (Route<dynamic> route) => false);
-                },
-                child: const Icon(
-                  Icons.home,
-                  size: 30,
-                ),
+            padding: EdgeInsets.only(right: 20.0),
+            child: GestureDetector(
+              onTap: () {
+                // pop everything and return to home
+                Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (context) => HomeScreen()),
+                    (Route<dynamic> route) => false);
+              },
+              child: const Icon(
+                Icons.home,
+                size: 30,
               ),
+            ),
           ),
         ],
         backgroundColor: bgColor,
@@ -63,14 +61,13 @@ class _allSearchList extends State<allSearchList> {
         ),
       ),
       body: CustomScrollView(
-
         slivers: <Widget>[
-          SliverList(delegate: SliverChildListDelegate(
-            [
-            ],
+          SliverList(
+            delegate: SliverChildListDelegate(
+              [],
+            ),
           ),
-          ),
-          createList()
+          createList(),
         ],
       ),
     );
@@ -84,7 +81,7 @@ class _allSearchList extends State<allSearchList> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
           ),
           //searchBar(),
-          getList()
+          getList(),
         ],
       ),
     );
@@ -93,8 +90,8 @@ class _allSearchList extends State<allSearchList> {
   Widget getList() {
     return Column(
         children: onoDataList.map((x) {
-          return onoTile(x);
-        }).toList());
+      return onoTile(x);
+    }).toList());
   }
 
   Widget onoTile(listModel model) {
@@ -116,7 +113,6 @@ class _allSearchList extends State<allSearchList> {
           )
         ],
       ),
-
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         child: ListTile(
@@ -138,10 +134,13 @@ class _allSearchList extends State<allSearchList> {
             ),
           ),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return onoDef(model: model);
-            },
-            ),
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return onoDef(model: model);
+                },
+              ),
             );
           },
           title: Text(model.onomatopoeia),
@@ -159,19 +158,21 @@ class _allSearchList extends State<allSearchList> {
   }
 
   Widget getSearchList(String word) {
-    onoDataList.forEach((item){
+    List<listModel> searchList = [];
+    onoDataList.forEach((item) {
       print(word);
-      if(item.onomatopoeia == word.toLowerCase() && item.transliteration == word.toLowerCase()){
+      if (item.onomatopoeia == word.toLowerCase() &&
+          item.transliteration == word.toLowerCase()) {
         searchList.add(item);
       }
     });
     return Column(
         children: searchList.map((x) {
-          return onoTile(x);
-        }).toList());
+      return onoTile(x);
+    }).toList());
   }
 
-  Widget searchBar(){
+  Widget searchBar() {
     return Container(
       width: double.infinity,
       height: 40,
@@ -179,20 +180,18 @@ class _allSearchList extends State<allSearchList> {
           color: lightBgColor, borderRadius: BorderRadius.circular(20)),
       child: Center(
         child: TextField(
-          onChanged: (query){
+          onChanged: (query) {
             getSearchList(query);
             /* Clear the search field */
           },
           controller: editingController,
           decoration: const InputDecoration(
               prefixIcon: Icon(Icons.search),
-                icon: Icon(Icons.clear),
+              //suffixIcon: Icon(Icons.clear),
               hintText: 'Search...',
-              border: InputBorder.none
-          ),
+              border: InputBorder.none),
         ),
-    ),
+      ),
     );
   }
-
 }
