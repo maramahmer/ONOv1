@@ -7,7 +7,7 @@ final dummyData = [
       "frequency": "Common",
       "meaningjp": "齷齪。細かいことを気にして、落ち着かないさま。目先のことにとらわれて、気持ちがせかせかするさま。",
       "meaningen":
-      "worried about the small things, stressed about immediate problems. Emotionally overwhelmed",
+      "worried about the small things, stressed about immediate problems. Emotionally overwhelmed.",
       "mainemotion": "bad",
       "subemotion": "stressed"
     },

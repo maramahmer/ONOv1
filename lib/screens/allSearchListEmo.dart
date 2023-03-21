@@ -110,6 +110,7 @@ class _allSearchList extends State<allSearchListEmo> {
 
   Widget onoTile(listModel model) {
     return Container(
+
       margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: const BoxDecoration(
         color: lightBgColor,
@@ -127,7 +128,6 @@ class _allSearchList extends State<allSearchListEmo> {
           )
         ],
       ),
-
       child: Container(
         padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
         child: ListTile(
@@ -149,15 +149,32 @@ class _allSearchList extends State<allSearchListEmo> {
             ),
           ),
           onTap: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context) {
-              return onoDef(model: model);
-            },
-            ),
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return onoDef(model: model);
+                },
+              ),
             );
           },
-          title: Text(model.onomatopoeia),
-          subtitle: Text(
+          title:
+          Wrap(
+            children: [Text(model.onomatopoeia,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontWeight: FontWeight.bold),),
+              const Icon(Icons.arrow_right_rounded),
+              Text(model.transliteration,
+                overflow: TextOverflow.ellipsis,)],
+          ),
+          /*subtitle: Text(
             model.transliteration,
+          ),*/
+          subtitle:
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(model.meaningen,
+              overflow: TextOverflow.ellipsis,),
           ),
           trailing: const Icon(
             Icons.keyboard_arrow_right,
