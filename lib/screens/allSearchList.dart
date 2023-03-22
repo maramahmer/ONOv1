@@ -22,6 +22,7 @@ class allSearchList extends StatefulWidget {
 class _allSearchList extends State<allSearchList> {
   late List<listModel> onoDataList;
 
+
   get editingController => null;
 
   @override
@@ -96,7 +97,8 @@ class _allSearchList extends State<allSearchList> {
 
   Widget onoTile(listModel model) {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+
+    margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
       decoration: const BoxDecoration(
         color: lightBgColor,
         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -143,10 +145,24 @@ class _allSearchList extends State<allSearchList> {
               ),
             );
           },
-          title: Text(model.onomatopoeia),
-          subtitle: Text(
+          title:
+          Wrap(
+              children: [Text(model.onomatopoeia,
+                overflow: TextOverflow.ellipsis,
+                style: TextStyle(fontWeight: FontWeight.bold),),
+                const Icon(Icons.arrow_right_rounded),
+                Text(model.transliteration,
+                  overflow: TextOverflow.ellipsis,)],
+            ),
+          /*subtitle: Text(
             model.transliteration,
-          ),
+          ),*/
+          subtitle:
+              Padding(
+                padding: const EdgeInsets.only(top: 10),
+            child: Text(model.meaningen,
+            overflow: TextOverflow.ellipsis,),
+              ),
           trailing: const Icon(
             Icons.keyboard_arrow_right,
             size: 30,
