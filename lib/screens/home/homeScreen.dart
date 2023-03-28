@@ -195,24 +195,8 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30,
               color: Colors.white,
             )
-            /*child: Text(
-              "show all",
-              textAlign: TextAlign.center,
-              style: Theme.of(context)
-                  .textTheme
-                  .titleLarge!
-                  .copyWith(fontWeight: FontWeight.w400, color: Colors.white),
-            ),*/
+
           ),
-/*           Padding(
-              padding: const EdgeInsets.all(5),
-              child: Text(
-                widget.emotionButton.name,
-                style: Theme.of(context)
-                    .textTheme
-                    .titleLarge!
-                    .copyWith(fontWeight: FontWeight.w400, color: mainPink),
-              )), */
         ],
       ),
     );

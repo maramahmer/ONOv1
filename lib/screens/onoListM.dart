@@ -78,20 +78,6 @@ class _onoListM extends State<onoListM> {
   }
 
   Widget createList() {
-    /*return ListView(
-      shrinkWrap: true,
-      children: [
-        //Text(button),
-        Text(
-          widget.emotionButton.name,
-          textAlign: TextAlign.left,
-          style: Theme.of(context)
-              .textTheme
-              .headlineMedium!
-              .copyWith(fontWeight: FontWeight.w500, color: textBlack),
-        ),
-      ],
-    );*/
     return SliverList(
       delegate: SliverChildListDelegate(
         [

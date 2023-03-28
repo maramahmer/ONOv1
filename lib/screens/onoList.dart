@@ -81,10 +81,6 @@ class _onoList extends State<onoList> {
       ),
     );
   }
-/*   
-  Widget createList(){
-    
-  } */
 
   Widget createList() {
     return SliverList(
