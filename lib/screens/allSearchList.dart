@@ -4,7 +4,6 @@ import 'package:ono/constants.dart';
 import 'package:ono/screens/home/homeScreen.dart';
 import 'package:ono/model/dummyData.dart';
 import 'package:ono/model/listModel.dart';
-
 import 'onoDef.dart';
 
 // When choosing show all in one emotional category
@@ -21,16 +20,11 @@ class _allSearchList extends State<allSearchList> {
   late List<listModel> onoDataList;
   late List<listModel> searchList = [];
 
-
-  get editingController => null;
-
   @override
   void initState() {
     onoDataList = dummyData.map((x) => listModel.fromJson(x)).toList();
     super.initState();
   }
-
-  int quantity = 1;
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,25 +71,6 @@ class _allSearchList extends State<allSearchList> {
           return onoTile(x);
         }).toList());
   }
-  Widget getList() {
-    return Column(
-        children: onoDataList.map((x) {
-          return onoTile(x);
-        }).toList());
-  }
-/*  Widget createList() {
-    return SliverList(
-      delegate: SliverChildListDelegate(
-        [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          ),
-          getSearchList(word)
-        ],
-      ),
-    );
-  }*/
-
 
 Widget getSearchList(String word) {
     onoDataList.forEach((item) {
