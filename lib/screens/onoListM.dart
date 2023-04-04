@@ -40,7 +40,7 @@ class _onoListM extends State<onoListM> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: searchBar(),
+        //title: searchBar(),
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),

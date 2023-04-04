@@ -35,7 +35,7 @@ class _allSearchList extends State<allSearchListEmo> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: searchBar(),
+        //title: searchBar(),
         actions: <Widget>[
           Padding(
               padding: EdgeInsets.only(right: 20.0),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ono/constants.dart';
 import 'package:ono/screens/allSearchList.dart';
 import '../../model/emotionButton.dart';
+import '../search.dart';
 import '../secondarySelectionScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -177,7 +178,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ElevatedButton(
             onPressed: () {
               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return allSearchList();
+                return SearchList();
               }));
             },
             style: ButtonStyle(
