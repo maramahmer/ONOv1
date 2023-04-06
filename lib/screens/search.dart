@@ -58,6 +58,11 @@ class _SearchListState extends State<SearchList> {
 
   @override
   Widget build(BuildContext context) {
+    var size = MediaQuery.of(context).size;
+
+    /*24 is for notification bar on Android*/
+    final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
+    final double itemWidth = size.width / 2;
     return Scaffold(
         key: key,
         appBar: buildBar(context),
@@ -66,8 +71,9 @@ class _SearchListState extends State<SearchList> {
             itemBuilder: (context, index) {
               return GridItem(_searchList[index]);
             },
-            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 3,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 1,
+              childAspectRatio: (1/.3),
             )));
   }
 
@@ -89,6 +95,7 @@ class _SearchListState extends State<SearchList> {
     return AppBar(
         centerTitle: true,
         title: appBarTitle,
+        elevation: 0,
         iconTheme: IconThemeData(color: mainPink),
         backgroundColor: bgColor,
         actions: <Widget>[
@@ -144,48 +151,80 @@ class _SearchListState extends State<SearchList> {
 
 class GridItem extends StatelessWidget {
   final listModel model;
-  GridItem(this.model);
+  const GridItem(this.model, {super.key});
 
   Widget build(BuildContext context) {
-    return Card(
-      margin: EdgeInsets.fromLTRB(5, 5, 5, 5),
-      elevation: 10.0,
-      child: InkWell(
-        splashColor: mainPink,
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) {
-                return onoDef(model: model);
-              },
-            ),
-          );        },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: EdgeInsets.fromLTRB(10.0, 15.0, 0.0, 0.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Text(
-                    this.model.onomatopoeia,
-                    style: TextStyle(
-                        fontFamily: 'Raleway',
-                        fontWeight: FontWeight.bold,
-                        fontSize: 14.0),
-                    maxLines: 1,
-                  ),
-                  SizedBox(height: 0.0),
-                  Text(
-                    model.transliteration,
-                    style: TextStyle(fontFamily: 'Roboto'),
-                  ),
-                ],
+    return Container(
+      margin: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      decoration: const BoxDecoration(
+        color: lightBgColor,
+        borderRadius: BorderRadius.all(Radius.circular(20)),
+        boxShadow: <BoxShadow>[
+          BoxShadow(
+            offset: Offset(4, 4),
+            blurRadius: 10,
+            color: darkBgColor,
+          ),
+          BoxShadow(
+            offset: Offset(-3, 0),
+            blurRadius: 14,
+            color: darkBgColor,
+          )
+        ],
+      ),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 18, vertical: 8),
+        child: ListTile(
+          contentPadding: EdgeInsets.all(0),
+          leading: ClipRRect(
+            borderRadius: BorderRadius.all(Radius.circular(13)),
+            child: Container(
+              height: 35,
+              width: 55,
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(15),
+                color: lightBgColor,
+              ),
+              child: Text(
+                model.letter,
+                textAlign: TextAlign.left,
+                textScaleFactor: 2,
               ),
             ),
-          ],
+          ),
+          onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return onoDef(model: model);
+                },
+              ),
+            );
+          },
+          title:
+          Wrap(
+            children: [Text(model.onomatopoeia,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(fontWeight: FontWeight.bold),),
+              const Icon(Icons.arrow_right_rounded),
+              Text(model.transliteration,
+                overflow: TextOverflow.ellipsis,)],
+          ),
+          /*subtitle: Text(
+            model.transliteration,
+          ),*/
+          subtitle:
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: Text(model.meaningen,
+              overflow: TextOverflow.ellipsis,),
+          ),
+          trailing: const Icon(
+            Icons.keyboard_arrow_right,
+            size: 30,
+            color: mainPink,
+          ),
         ),
       ),
     );
