@@ -13,7 +13,7 @@ class SearchList extends StatefulWidget {
 
 class _SearchListState extends State<SearchList> {
   Widget appBarTitle = Text(
-    "ONO Search",
+    " ",
     style: TextStyle(color: mainPink),
   );
   Icon actionIcon = Icon(
@@ -58,11 +58,6 @@ class _SearchListState extends State<SearchList> {
 
   @override
   Widget build(BuildContext context) {
-    var size = MediaQuery.of(context).size;
-
-    /*24 is for notification bar on Android*/
-    final double itemHeight = (size.height - kToolbarHeight - 24) / 2;
-    final double itemWidth = size.width / 2;
     return Scaffold(
         key: key,
         appBar: buildBar(context),
@@ -83,8 +78,11 @@ class _SearchListState extends State<SearchList> {
     } else {
       _searchList = _list
           .where((element) =>
-      element.onomatopoeia.toLowerCase().contains(_searchText.toLowerCase()) ||
-          element.transliteration.toLowerCase().contains(_searchText.toLowerCase()))
+      element.onomatopoeia.toLowerCase().contains(_searchText.toLowerCase())
+          || element.transliteration.toLowerCase().contains(_searchText.toLowerCase())
+          || element.meaningen.toLowerCase().contains(_searchText.toLowerCase())
+          || element.meaningjp.toLowerCase().contains(_searchText.toLowerCase())
+      )
           .toList();
       print('${_searchList.length}');
       return _searchList;
@@ -111,11 +109,16 @@ class _SearchListState extends State<SearchList> {
                   this.appBarTitle = TextField(
                     controller: _searchQuery,
                     style: const TextStyle(
+                      fontSize: 20,
                       color: mainPink,
                     ),
                     decoration: const InputDecoration(
-                        hintText: "Search...",
-                        hintStyle: TextStyle(color: mainPink), ),
+                      hintText: "Search...",
+                      hintStyle: TextStyle(
+                        fontSize: 20,
+                        color: mainPink
+                    ),
+                    ),
                   );
                   _handleSearchStart();
                 } else {
@@ -140,7 +143,7 @@ class _SearchListState extends State<SearchList> {
         color: mainPink,
       );
       this.appBarTitle = const Text(
-        "ONO Search",
+        " ",
         style: TextStyle(color: mainPink),
       );
       _IsSearching = false;
