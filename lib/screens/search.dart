@@ -80,8 +80,8 @@ class _SearchListState extends State<SearchList> {
           .where((element) =>
       element.onomatopoeia.toLowerCase().contains(_searchText.toLowerCase())
           || element.transliteration.toLowerCase().contains(_searchText.toLowerCase())
-          || element.meaningen.toLowerCase().contains(_searchText.toLowerCase())
-          || element.meaningjp.toLowerCase().contains(_searchText.toLowerCase())
+          //|| element.meaningen.toLowerCase().contains(_searchText.toLowerCase())
+          //|| element.meaningjp.toLowerCase().contains(_searchText.toLowerCase())
       )
           .toList();
       print('${_searchList.length}');
